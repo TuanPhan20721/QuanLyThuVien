@@ -13,7 +13,7 @@ namespace QuanLyTV
 {
     public partial class QuanLySach : Form
     {
-        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-IH4T8BT\SQLEXPRESS;Initial Catalog=qltv;Integrated Security=True");
+        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-P3JTV9V;Initial Catalog=qltv;Integrated Security=True");
         public QuanLySach()
         {
             InitializeComponent();
@@ -83,67 +83,104 @@ namespace QuanLyTV
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            strcon.Open();
-            string sql = "Insert_sach";
-            SqlCommand com = new SqlCommand(sql, strcon);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtMaSach.Text;
-            com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTenSach.Text;
-            com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtLoaiSach.Text;
-            com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTenTG.Text;
-            com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtNhaXB.Text;
-            com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
-            com.ExecuteNonQuery();
-            strcon.Close();  // đóng kết nối
-            hienthiTTTV();
+            try
+            {
+                strcon.Open();
+                string sql = "Insert_sach";
+                SqlCommand com = new SqlCommand(sql, strcon);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtMaSach.Text;
+                com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTenSach.Text;
+                com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtLoaiSach.Text;
+                com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTenTG.Text;
+                com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtNhaXB.Text;
+                com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
+                com.ExecuteNonQuery();
+                strcon.Close();  // đóng kết nối
+                hienthiTTTV();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            strcon.Open();
-            string sql = "delete_sach";
-            SqlCommand com = new SqlCommand(sql, strcon);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@masach", txtMaSach.Text);
-            com.ExecuteNonQuery();
-            strcon.Close();
-            hienthiTTTV();
+            try
+            {
+                strcon.Open();
+                string sql = "delete_sach";
+                SqlCommand com = new SqlCommand(sql, strcon);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@masach", txtMaSach.Text);
+                com.ExecuteNonQuery();
+                strcon.Close();
+                hienthiTTTV();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            strcon.Open();
-            string sql = "Update_sach";
-            SqlCommand com = new SqlCommand(sql, strcon);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtMaSach.Text;
-            com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTenSach.Text;
-            com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtLoaiSach.Text;
-            com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTenTG.Text;
-            com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtNhaXB.Text;
-            com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
-            com.ExecuteNonQuery();
-            strcon.Close();  // đóng kết nối
-            hienthiTTTV();
+            try
+            {
+                strcon.Open();
+                string sql = "Update_sach";
+                SqlCommand com = new SqlCommand(sql, strcon);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtMaSach.Text;
+                com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTenSach.Text;
+                com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtLoaiSach.Text;
+                com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTenTG.Text;
+                com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtNhaXB.Text;
+                com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
+                com.ExecuteNonQuery();
+                strcon.Close();  // đóng kết nối
+                hienthiTTTV();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            strcon.Open();
-            string sql = "search_sach";
-            SqlCommand com = new SqlCommand(sql, strcon);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            com.Parameters.Add("@namXB", SqlDbType.NVarChar).Value = txtTimKiem.Text;
-            SqlDataAdapter da = new SqlDataAdapter(com); //chuyen du lieu ve
-            DataTable dt = new DataTable(); //tạo một kho ảo để lưu trữ dữ liệu
-            da.Fill(dt);  // đổ dữ liệu vào kho
-            strcon.Close();  // đóng kết nối
-            dgvQLS.DataSource = dt;
+            try
+            {
+                strcon.Open();
+                string sql = "search_sach";
+                SqlCommand com = new SqlCommand(sql, strcon);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@masach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                com.Parameters.Add("@tensach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                com.Parameters.Add("@loaisach", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                com.Parameters.Add("@tenTG", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                com.Parameters.Add("@nhaXB", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                com.Parameters.Add("@namXB", SqlDbType.NVarChar).Value = txtTimKiem.Text;
+                SqlDataAdapter da = new SqlDataAdapter(com); //chuyen du lieu ve
+                DataTable dt = new DataTable(); //tạo một kho ảo để lưu trữ dữ liệu
+                da.Fill(dt);  // đổ dữ liệu vào kho
+                strcon.Close();  // đóng kết nối
+                dgvQLS.DataSource = dt;
+                txtTimKiem.Clear();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
     }
 }

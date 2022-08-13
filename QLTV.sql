@@ -70,18 +70,19 @@ insert into theTV values
 ('mt02','20/02/2022','20/1/2023'),
 ('mt03','20/03/2022','20/2/2023')
 
---1. Sách (MÃ SÁCH, Tên sách, Tên Tác Giả, theloai, nhaXB, Năm xuất bản)
+--1. Sách (MÃ SÁCH, Tên sách, theloai, Tên Tác Giả, nhaXB, Năm xuất bản)
 set dateformat dmy
 insert into sach values
-('ms01','HQTCSDL','Sách Tin Học',N'NGUYEN VAN A','NXB TPHCM','20/09/2013'),
-('ms02','CSDL','Sách Tin Học',N'NGUYEN VAN B','NXB TPHCM','10/05/2015'),
-('ms03','CTDL&GT','Sách Tin Học',N'NGUYEN VAN B','NXB TPHCM','16/07/2017')
+('ms01','Java Web','Sach Tin Hoc',N'NGUYEN VAN A','NXB TPHCM','20/09/2013'),
+('ms02','Nhap Mon LT','Sach Tin Hoc',N'NGUYEN VAN B','NXB TPHCM','10/05/2015'),
+('ms03','Anh Van B1','Sach Ngoai Ngu',N'NGUYEN VAN B','NXB TPHCM','16/07/2017')
 
 --5. Mượn trả (MÃ MƯỢN TRẢ, MÃ THẺ, MÃ Thủ thư, Ngày mượn)
 insert into muonTraSach values
 ('mmt01','mt01','TT01','25/06/2022','ms01',N'Đã trả','10/07/2022'),
 ('mmt02','mt02','TT01','25/05/2022','ms01',N'Chưa Trả',Null),
-('mmt03','mt02','TT02','26/05/2022','ms02',N'Đã trả','03/08/2022')
+('mmt03','mt02','TT02','26/05/2022','ms02',N'Đã trả','03/08/2022'),
+('mmt04','mt01','TT01','26/05/2022','ms01',N'Đã trả','05/06/2022')
 --2. Độc giả (Mã độc giả, Tên độc giả, Địa chỉ, MÃ THẺ)
 insert into docGia values
 ('dg01','Phan Thi A','14/05/2001','213012312','31321312','TPHCM','mt01'),
@@ -92,8 +93,107 @@ select * from sach
 update sach set tensach='HQT' where masach='ms01'
 select * from muonTraSach
 go
--- tạo thủ tục lấy ra thông tin bảng Sách
+---------------Phan Văn Tuấn------------------
+----------------------------FUNCTION
+--1. Viết hàm truyền vào mã sách sẽ trả về tổng số sách đã trả của mã sách đó 
+go
+create function tra_ve_TongSo_Sach_datra(@masach nvarchar(10))
+returns int
+as
+begin
+	declare @sosach int
+	set @sosach = (select COUNT(@masach) from muonTraSach where masach =@masach and daTra=N'Đã trả')
+	return @sosach
+end
+go
 
+declare @ms nvarchar(10) 
+set @ms = dbo.tra_ve_TongSo_Sach_datra('ms01')
+print 'Tong so sach da tra cua ma sach ms01 la:'+ @ms  
+go
+--2. viết hàm thống kê sách mượn
+
+create function travebang()
+returns table return 
+	select s.masach,s.tensach,mt.daTra,mt.ngayTra
+	from sach s inner join muonTraSach mt on s.masach = mt.masach
+	group by s.masach,s.tensach,mt.daTra,mt.ngayTra
+
+go
+select * from travebang()
+------------------------CUSOR
+--- Bai tap Cursor
+--1/ Viết cursor hiển thị mã sách, tên sách và tổng số phieu muon tra.
+declare hienThi_TT cursor dynamic
+for
+select s.masach ,s.tensach,count(mt.maMT) as TongSoPhieu_MT
+from sach s,muonTraSach mt
+where s.masach = mt.masach group by s.masach,s.tensach
+
+open hienThi_TT
+declare @masach char(10),@tensach nvarchar(20),@tongSoPhieu_MT int
+fetch next from  hienThi_TT into @masach,@tensach,@tongSoPhieu_MT 
+while(@@FETCH_STATUS =0)
+begin
+	print 'Ma sach: '+@masach+'Ten sach:'+@tensach+N'     Tong so phieu muon tra tuong ung là : '+cast(@tongSoPhieu_MT as varchar(5))
+	fetch next from hienThi_TT into @masach,@tensach,@tongSoPhieu_MT
+end
+close hienThi_TT
+deallocate hienThi_TT
+go
+--2/ Viết cursor hiển thị mã, họ tên, địa chỉ và tuổi của từng độc giả.
+declare hienThi_docgia cursor dynamic
+for
+select dg.madg ,dg.tendg,dg.diachi,(YEAR(GETDATE())-YEAR(dg.ngaysinh)) as tuoi
+from docGia dg
+
+open hienThi_docgia
+declare @madg nchar(10),@tendg nvarchar(20),@diachi nvarchar(10),@tuoi int
+fetch next from  hienThi_docgia into @madg,@tendg,@diachi,@tuoi 
+while(@@FETCH_STATUS =0)
+begin
+	print 'Ma doc gia: '+@madg+' Ten doc gia: ' +@tendg+'        Dia chi: '+@diachi+'          Tuoi cua doc gia: '+cast(@tuoi as varchar(5))+' tuoi'
+	fetch next from hienThi_docgia into @madg,@tendg,@diachi,@tuoi
+end
+close hienThi_docgia
+deallocate hienThi_docgia
+go
+------------------------TRIGGER
+--1. Tạo trigger kiểm tra loại sách khi insert,update
+
+create trigger check_loaiSach on sach
+for insert,update
+as
+	if((select loaisach from inserted) ='Sach Tin Hoc' 
+	 or (select loaisach from inserted) ='Sach Ngoai Ngu' )
+	commit tran
+	begin
+		print 'loai sach phai la sach tin hoc or sach ngoai ngu'
+		rollback tran
+	end
+go	
+insert into sach values
+('ms04','Java Web','Sach Kinh Di',N'NGUYEN VAN A','NXB TPHCM','20/09/2013')
+drop trigger check_loaiSach
+go
+--2. viet trigger kiem tra ngay tra lon hon ngay muon
+create trigger check_ngay on theTV
+for insert,update
+as
+	if((select ngayhh from inserted)>(select ngaybd from inserted))
+	 commit tran
+	 else
+	 begin
+		print 'Ngay het han phai lon hon ngay bat dau'
+		rollback tran
+	 end
+go
+insert into theTV values
+('mt04','22/12/2022','20/12/2022')
+drop trigger check_ngay
+ go
+---------------------------PROCEDURE
+-- tạo thủ tục lấy ra thông tin bảng Sách
 CREATE proc Select_Sach 
 AS 
 BEGIN
@@ -101,8 +201,9 @@ BEGIN
      FROM sach
 END;
 EXEC Select_Sach;
--- tạo thủ tục thêm thông tin sách
 go
+
+-- tạo thủ tục thêm thông tin sách
 create proc Insert_sach
 @masach char(10),@tensach nvarchar(30),
 @loaisach nvarchar(30),@tenTG nvarchar(30),
@@ -111,6 +212,7 @@ AS
 	insert into sach(masach,tensach,loaisach,tenTG,nhaXB,namXB)
 	values (@masach,@tensach,@loaisach,@tenTG,@nhaXB,@namXB)
 go
+
 -- tạo thủ tục xóa sách
 create proc delete_sach
 @masach char(10)
@@ -120,6 +222,7 @@ delete from sach
 where masach = @masach 
 end
 go
+
 -- tạo thủ tục cập nhật thông tin sách
 create proc Update_sach
 @masach char(10),@tensach nvarchar(30),
@@ -133,6 +236,7 @@ set masach=@masach,tensach=@tensach,loaisach=@loaisach,
 WHERE masach = @masach
 END 
 go
+
 -- tạo thủ tục tìm kiếm sách
 create proc search_sach 
 @tensach nvarchar(30),@loaisach nvarchar(30),
@@ -143,8 +247,8 @@ as
 	where tensach like '%' +@tensach+'%' or loaisach like '%' +@loaisach+'%' or
 	masach like '%' +@masach+'%' or tenTG like '%' +@tenTG+'%' or
 	nhaXB like '%' +@nhaXB+'%' or namXB like '%' +@namXB +'%'
-
 go
+----------Nguyễn Trọng Khánh---------------
 -- tạo thủ tục lấy ra thông tin bảng muonTraSach
 
 CREATE proc Select_muonTraSach 
@@ -187,7 +291,7 @@ set maMT=@maMT,mathe=@mathe,matt=@matt,
 WHERE masach = @masach
 END 
 go
---
+---------------Cao Công Đoàn-----------------
 -- tạo thủ tục lấy ra thông tin Độc Giả
 
 CREATE proc Select_DocGia

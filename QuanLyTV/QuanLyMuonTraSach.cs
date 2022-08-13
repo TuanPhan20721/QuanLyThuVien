@@ -13,7 +13,7 @@ namespace QuanLyTV
 {
     public partial class QuanLyMuonTraSach : Form
     {
-        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-IH4T8BT\SQLEXPRESS;Initial Catalog=qltv;Integrated Security=True");
+        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-P3JTV9V;Initial Catalog=qltv;Integrated Security=True");
 
         public QuanLyMuonTraSach()
         {
