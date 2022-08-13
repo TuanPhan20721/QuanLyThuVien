@@ -40,6 +40,7 @@ namespace QuanLyTV
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.txtTuKhoa = new System.Windows.Forms.TextBox();
             this.lblTuKhoa = new System.Windows.Forms.Label();
+            this.btnHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -158,11 +159,22 @@ namespace QuanLyTV
             this.lblTuKhoa.TabIndex = 2;
             this.lblTuKhoa.Text = "Từ khoá:";
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(1167, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(169, 55);
+            this.btnHome.TabIndex = 14;
+            this.btnHome.Text = "Trang chủ";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // TimKiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 721);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grvKetQua);
             this.Controls.Add(this.groupBox1);
@@ -195,5 +207,6 @@ namespace QuanLyTV
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.TextBox txtTuKhoa;
         private System.Windows.Forms.Label lblTuKhoa;
+        private System.Windows.Forms.Button btnHome;
     }
 }

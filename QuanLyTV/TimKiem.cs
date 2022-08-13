@@ -13,7 +13,7 @@ namespace QuanLyTV
 {
     public partial class TimKiem : Form
     {
-        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-P3JTV9V;Initial Catalog=qltv;Integrated Security=True");
+        SqlConnection strcon = new SqlConnection(@"Data Source="+ ConstantHelper.ServerName +";Initial Catalog=qltv;Integrated Security=True");
         //Bảng
         const string ttv = "theTV";
         //Thủ Thư
@@ -478,6 +478,12 @@ namespace QuanLyTV
             grvKetQua.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
         }
 
-
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Menu formMenu = new Menu();
+            formMenu.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -33,6 +33,9 @@ namespace QuanLyTV
             this.label1 = new System.Windows.Forms.Label();
             this.grvKetQua = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpNgay = new System.Windows.Forms.DateTimePicker();
+            this.chkTraSach = new System.Windows.Forms.CheckBox();
+            this.chkSachChuaMuon = new System.Windows.Forms.CheckBox();
             this.txtNam = new System.Windows.Forms.TextBox();
             this.lblNam = new System.Windows.Forms.Label();
             this.txtThang = new System.Windows.Forms.TextBox();
@@ -45,9 +48,7 @@ namespace QuanLyTV
             this.chkNam = new System.Windows.Forms.CheckBox();
             this.chkNgay = new System.Windows.Forms.CheckBox();
             this.chkMuonSach = new System.Windows.Forms.CheckBox();
-            this.chkSachChuaMuon = new System.Windows.Forms.CheckBox();
-            this.chkTraSach = new System.Windows.Forms.CheckBox();
-            this.dtpNgay = new System.Windows.Forms.DateTimePicker();
+            this.btnHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +114,39 @@ namespace QuanLyTV
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thống kê theo";
+            // 
+            // dtpNgay
+            // 
+            this.dtpNgay.Checked = false;
+            this.dtpNgay.Location = new System.Drawing.Point(813, 32);
+            this.dtpNgay.Name = "dtpNgay";
+            this.dtpNgay.ShowCheckBox = true;
+            this.dtpNgay.Size = new System.Drawing.Size(356, 35);
+            this.dtpNgay.TabIndex = 25;
+            this.dtpNgay.Visible = false;
+            this.dtpNgay.ValueChanged += new System.EventHandler(this.dtpNgay_ValueChanged);
+            // 
+            // chkTraSach
+            // 
+            this.chkTraSach.AutoSize = true;
+            this.chkTraSach.Location = new System.Drawing.Point(619, 34);
+            this.chkTraSach.Name = "chkTraSach";
+            this.chkTraSach.Size = new System.Drawing.Size(110, 36);
+            this.chkTraSach.TabIndex = 24;
+            this.chkTraSach.Text = "Trả sách";
+            this.chkTraSach.UseVisualStyleBackColor = true;
+            this.chkTraSach.CheckedChanged += new System.EventHandler(this.chkTraSach_CheckedChanged);
+            // 
+            // chkSachChuaMuon
+            // 
+            this.chkSachChuaMuon.AutoSize = true;
+            this.chkSachChuaMuon.Location = new System.Drawing.Point(205, 34);
+            this.chkSachChuaMuon.Name = "chkSachChuaMuon";
+            this.chkSachChuaMuon.Size = new System.Drawing.Size(183, 36);
+            this.chkSachChuaMuon.TabIndex = 23;
+            this.chkSachChuaMuon.Text = "Sách chưa mượn";
+            this.chkSachChuaMuon.UseVisualStyleBackColor = true;
+            this.chkSachChuaMuon.CheckedChanged += new System.EventHandler(this.chkSachChuaMuon_CheckedChanged);
             // 
             // txtNam
             // 
@@ -236,44 +270,22 @@ namespace QuanLyTV
             this.chkMuonSach.UseVisualStyleBackColor = true;
             this.chkMuonSach.CheckedChanged += new System.EventHandler(this.chkMuonSach_CheckedChanged);
             // 
-            // chkSachChuaMuon
+            // btnHome
             // 
-            this.chkSachChuaMuon.AutoSize = true;
-            this.chkSachChuaMuon.Location = new System.Drawing.Point(205, 34);
-            this.chkSachChuaMuon.Name = "chkSachChuaMuon";
-            this.chkSachChuaMuon.Size = new System.Drawing.Size(183, 36);
-            this.chkSachChuaMuon.TabIndex = 23;
-            this.chkSachChuaMuon.Text = "Sách chưa mượn";
-            this.chkSachChuaMuon.UseVisualStyleBackColor = true;
-            this.chkSachChuaMuon.CheckedChanged += new System.EventHandler(this.chkSachChuaMuon_CheckedChanged);
-            // 
-            // chkTraSach
-            // 
-            this.chkTraSach.AutoSize = true;
-            this.chkTraSach.Location = new System.Drawing.Point(619, 34);
-            this.chkTraSach.Name = "chkTraSach";
-            this.chkTraSach.Size = new System.Drawing.Size(110, 36);
-            this.chkTraSach.TabIndex = 24;
-            this.chkTraSach.Text = "Trả sách";
-            this.chkTraSach.UseVisualStyleBackColor = true;
-            this.chkTraSach.CheckedChanged += new System.EventHandler(this.chkTraSach_CheckedChanged);
-            // 
-            // dtpNgay
-            // 
-            this.dtpNgay.Checked = false;
-            this.dtpNgay.Location = new System.Drawing.Point(813, 32);
-            this.dtpNgay.Name = "dtpNgay";
-            this.dtpNgay.ShowCheckBox = true;
-            this.dtpNgay.Size = new System.Drawing.Size(356, 35);
-            this.dtpNgay.TabIndex = 25;
-            this.dtpNgay.Visible = false;
-            this.dtpNgay.ValueChanged += new System.EventHandler(this.dtpNgay_ValueChanged);
+            this.btnHome.Location = new System.Drawing.Point(1167, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(169, 55);
+            this.btnHome.TabIndex = 13;
+            this.btnHome.Text = "Trang chủ";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // ThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 721);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.grvKetQua);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -312,5 +324,6 @@ namespace QuanLyTV
         private System.Windows.Forms.CheckBox chkTraSach;
         private System.Windows.Forms.CheckBox chkSachChuaMuon;
         private System.Windows.Forms.DateTimePicker dtpNgay;
+        private System.Windows.Forms.Button btnHome;
     }
 }

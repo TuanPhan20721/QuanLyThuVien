@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstantHelper.cs" />
     <Compile Include="CTNhomQuyen.cs" />
     <Compile Include="ctQuyenHan.cs" />
     <Compile Include="Login.cs">

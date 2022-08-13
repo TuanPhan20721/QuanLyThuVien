@@ -13,7 +13,7 @@ namespace QuanLyTV
 {
     public partial class ThongKe : Form
     {
-        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-RCCOOEU\SDB1;Initial Catalog=qltv;Integrated Security=True");
+        SqlConnection strcon = new SqlConnection(@"Data Source="+ ConstantHelper.ServerName +";Initial Catalog=qltv;Integrated Security=True");
         public ThongKe()
         {
             InitializeComponent();
@@ -371,6 +371,14 @@ namespace QuanLyTV
             grvKetQua.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             grvKetQua.ColumnHeadersDefaultCellStyle.ForeColor = Color.Green;
             grvKetQua.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Menu formMenu = new Menu();
+            formMenu.ShowDialog();
+            this.Close();
         }
     }
 }

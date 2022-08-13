@@ -48,5 +48,21 @@ namespace QuanLyTV
         {
             
         }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ThongKe frmThongKe = new ThongKe();
+            frmThongKe.ShowDialog();
+            this.Close();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TimKiem formTimKiem = new TimKiem();
+            formTimKiem.ShowDialog();
+            this.Close();
+        }
     }
 }
