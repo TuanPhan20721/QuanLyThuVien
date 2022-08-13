@@ -13,7 +13,7 @@ namespace QuanLyTV
 {
     public partial class TimKiem : Form
     {
-        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-RCCOOEU\SDB1;Initial Catalog=qltv;Integrated Security=True");
+        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-P3JTV9V;Initial Catalog=qltv;Integrated Security=True");
         //Bảng
         const string ttv = "theTV";
         //Thủ Thư

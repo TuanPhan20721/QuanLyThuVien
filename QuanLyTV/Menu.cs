@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,12 @@ namespace QuanLyTV
 {
     public partial class Menu : Form
     {
+        SqlConnection strcon = new SqlConnection(@"Data Source=DESKTOP-P3JTV9V;Initial Catalog=qltv;Integrated Security=True");
         public Menu()
         {
             InitializeComponent();
         }
+
 
         private void btnQLS_Click(object sender, EventArgs e)
         {
@@ -39,6 +42,11 @@ namespace QuanLyTV
             QuanLyMuonTraSach formQLMT = new QuanLyMuonTraSach();
             formQLMT.ShowDialog();
             this.Close();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
