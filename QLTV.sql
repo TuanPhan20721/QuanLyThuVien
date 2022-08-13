@@ -344,8 +344,8 @@ AS
 	WHERE TABLE_NAME like @TENBANG)
 GO
 --DROP FUNCTION LAY_TEN_COT
-SELECT * FROM LAY_TEN_COT('ThủThư')
-GO
+--SELECT * FROM LAY_TEN_COT('ThuThu')
+--GO
 -- Tạo thủ tục tìm theo thủ thư, dùng dynamic SQL để truy vấn
 CREATE FUNCTION TIM_KIEM_THU_THU()  
 RETURNS TABLE  
@@ -373,4 +373,22 @@ RETURNS TABLE
 AS  
 RETURN  
     SELECT * FROM docGia
+GO
+-- Tạo thủ tục lấy masterdata, dùng dynamic SQL để truy vấn
+CREATE FUNCTION LAY_MASTER_DATA()  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT madg,tendg,DG.ngaysinh as ngaysinh_dg,soCMT,soDT,diachi,maMT,ngayMuon,S.masach,daTra,ngayTra,tensach,loaisach,tenTG,nhaXB,namXB,MTS.mathe,ngaybd,ngayhh,MTS.matt,hoten,TT.ngaysinh as ngaysinh_tt,sdt
+	FROM docGia DG,thuthu TT,sach S,muonTraSach MTS, theTV T
+	WHERE TT.matt = MTS.matt AND S.masach = MTS.masach AND T.mathe = DG.mathe AND MTS.mathe = T.mathe
+GO
+
+CREATE FUNCTION LAY_DANH_SACH_MUON_TRA()
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT S.masach,tensach,loaisach,tenTG,nhaXB,namXB,maMT,mathe,matt,ngayMuon,daTra,ngayTra
+	FROM sach S,muonTraSach MTS
+	WHERE S.masach = MTS.masach 
 GO
