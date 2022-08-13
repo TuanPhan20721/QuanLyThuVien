@@ -55,7 +55,10 @@ namespace QuanLyTV
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQLS)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label7
@@ -182,42 +185,42 @@ namespace QuanLyTV
             // 
             // txtNamXB
             // 
-            this.txtNamXB.Location = new System.Drawing.Point(419, 165);
+            this.txtNamXB.Location = new System.Drawing.Point(397, 134);
             this.txtNamXB.Name = "txtNamXB";
             this.txtNamXB.Size = new System.Drawing.Size(118, 20);
             this.txtNamXB.TabIndex = 37;
             // 
             // txtNhaXB
             // 
-            this.txtNhaXB.Location = new System.Drawing.Point(419, 117);
+            this.txtNhaXB.Location = new System.Drawing.Point(397, 86);
             this.txtNhaXB.Name = "txtNhaXB";
             this.txtNhaXB.Size = new System.Drawing.Size(118, 20);
             this.txtNhaXB.TabIndex = 36;
             // 
             // txtTenTG
             // 
-            this.txtTenTG.Location = new System.Drawing.Point(419, 61);
+            this.txtTenTG.Location = new System.Drawing.Point(397, 30);
             this.txtTenTG.Name = "txtTenTG";
             this.txtTenTG.Size = new System.Drawing.Size(118, 20);
             this.txtTenTG.TabIndex = 35;
             // 
             // txtTenSach
             // 
-            this.txtTenSach.Location = new System.Drawing.Point(104, 165);
+            this.txtTenSach.Location = new System.Drawing.Point(82, 134);
             this.txtTenSach.Name = "txtTenSach";
             this.txtTenSach.Size = new System.Drawing.Size(126, 20);
             this.txtTenSach.TabIndex = 34;
             // 
             // txtLoaiSach
             // 
-            this.txtLoaiSach.Location = new System.Drawing.Point(104, 117);
+            this.txtLoaiSach.Location = new System.Drawing.Point(82, 86);
             this.txtLoaiSach.Name = "txtLoaiSach";
             this.txtLoaiSach.Size = new System.Drawing.Size(126, 20);
             this.txtLoaiSach.TabIndex = 33;
             // 
             // txtMaSach
             // 
-            this.txtMaSach.Location = new System.Drawing.Point(104, 61);
+            this.txtMaSach.Location = new System.Drawing.Point(82, 30);
             this.txtMaSach.Name = "txtMaSach";
             this.txtMaSach.Size = new System.Drawing.Size(126, 20);
             this.txtMaSach.TabIndex = 32;
@@ -225,7 +228,7 @@ namespace QuanLyTV
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(317, 64);
+            this.label6.Location = new System.Drawing.Point(295, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 31;
@@ -234,7 +237,7 @@ namespace QuanLyTV
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(334, 120);
+            this.label5.Location = new System.Drawing.Point(312, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 30;
@@ -243,7 +246,7 @@ namespace QuanLyTV
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(332, 168);
+            this.label4.Location = new System.Drawing.Point(310, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 29;
@@ -252,7 +255,7 @@ namespace QuanLyTV
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 172);
+            this.label3.Location = new System.Drawing.Point(17, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 28;
@@ -261,7 +264,7 @@ namespace QuanLyTV
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 124);
+            this.label2.Location = new System.Drawing.Point(17, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 27;
@@ -270,7 +273,7 @@ namespace QuanLyTV
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 64);
+            this.label1.Location = new System.Drawing.Point(17, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 26;
@@ -283,11 +286,33 @@ namespace QuanLyTV
             this.txtTimKiem.Size = new System.Drawing.Size(175, 20);
             this.txtTimKiem.TabIndex = 46;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtNamXB);
+            this.groupBox1.Controls.Add(this.txtNhaXB);
+            this.groupBox1.Controls.Add(this.txtTenTG);
+            this.groupBox1.Controls.Add(this.txtTenSach);
+            this.groupBox1.Controls.Add(this.txtLoaiSach);
+            this.groupBox1.Controls.Add(this.txtMaSach);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(22, 37);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(577, 166);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông Tin Sách";
+            // 
             // QuanLySach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 427);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnXoaTrang);
@@ -296,22 +321,12 @@ namespace QuanLyTV
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dgvQLS);
-            this.Controls.Add(this.txtNamXB);
-            this.Controls.Add(this.txtNhaXB);
-            this.Controls.Add(this.txtTenTG);
-            this.Controls.Add(this.txtTenSach);
-            this.Controls.Add(this.txtLoaiSach);
-            this.Controls.Add(this.txtMaSach);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "QuanLySach";
-            this.Text = "Form1";
+            this.Text = "Quản lý sách";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQLS)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,6 +360,8 @@ namespace QuanLyTV
         private System.Windows.Forms.DataGridViewTextBoxColumn nhaXB;
         private System.Windows.Forms.DataGridViewTextBoxColumn namXB;
         private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

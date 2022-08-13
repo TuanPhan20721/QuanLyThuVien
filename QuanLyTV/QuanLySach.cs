@@ -97,12 +97,12 @@ namespace QuanLyTV
                 com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
                 com.ExecuteNonQuery();
                 strcon.Close();  // đóng kết nối
+                MessageBox.Show("Thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 hienthiTTTV();
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show("Không được trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
            
         }
@@ -118,11 +118,12 @@ namespace QuanLyTV
                 com.Parameters.AddWithValue("@masach", txtMaSach.Text);
                 com.ExecuteNonQuery();
                 strcon.Close();
+                MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 hienthiTTTV();
             }
             catch (Exception)
             {
-
+                MessageBox.Show("Có lỗi xảy ra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
            
@@ -144,11 +145,12 @@ namespace QuanLyTV
                 com.Parameters.Add("@namXB", SqlDbType.DateTime).Value = txtNamXB.Text;
                 com.ExecuteNonQuery();
                 strcon.Close();  // đóng kết nối
+                MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 hienthiTTTV();
             }
             catch (Exception)
             {
-
+                MessageBox.Show("Có lỗi xảy ra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
             
@@ -156,8 +158,7 @@ namespace QuanLyTV
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            try
-            {
+           
                 strcon.Open();
                 string sql = "search_sach";
                 SqlCommand com = new SqlCommand(sql, strcon);
@@ -174,13 +175,6 @@ namespace QuanLyTV
                 strcon.Close();  // đóng kết nối
                 dgvQLS.DataSource = dt;
                 txtTimKiem.Clear();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-           
         }
     }
 }
