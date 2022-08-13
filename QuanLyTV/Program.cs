@@ -16,7 +16,7 @@ namespace QuanLyTV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLyDocGia());
+            Application.Run(new Menu());
         }
     }
 }
