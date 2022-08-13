@@ -74,6 +74,7 @@ namespace QuanLyTV
             this.Controls.Add(this.btnQLS);
             this.Name = "Menu";
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
 
         }
