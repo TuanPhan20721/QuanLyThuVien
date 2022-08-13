@@ -334,3 +334,43 @@ set madg=@madg,tendg=@tendg,ngaysinh=@ngaysinh,
 WHERE madg = @madg
 END 
 go
+---------- Đặng Huỳnh Đức - 2001190480
+-- Tạo thủ tục lấy tên cột 
+CREATE FUNCTION LAY_TEN_COT (@TENBANG NVARCHAR(50))
+RETURNS TABLE
+AS
+	RETURN (SELECT COLUMN_NAME
+	FROM INFORMATION_SCHEMA.COLUMNS
+	WHERE TABLE_NAME like @TENBANG)
+GO
+--DROP FUNCTION LAY_TEN_COT
+SELECT * FROM LAY_TEN_COT('ThủThư')
+GO
+-- Tạo thủ tục tìm theo thủ thư, dùng dynamic SQL để truy vấn
+CREATE FUNCTION TIM_KIEM_THU_THU()  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM thuThu
+GO
+-- Tạo thủ tục tìm theo sách, dùng dynamic SQL để truy vấn
+CREATE FUNCTION TIM_KIEM_SACH()  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM sach
+GO
+-- Tạo thủ tục tìm theo Thẻ thư viện, dùng dynamic SQL để truy vấn
+CREATE FUNCTION TIM_KIEM_THE_THU_VIEN()  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM theTV
+GO
+-- Tạo thủ tục tìm theo Độc giả, dùng dynamic SQL để truy vấn
+CREATE FUNCTION TIM_KIEM_DOC_GIA()  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM docGia
+GO
