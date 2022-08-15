@@ -51,6 +51,7 @@ namespace QuanLyTV
             this.txtMaThe = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTinhTrang = new System.Windows.Forms.TextBox();
+            this.btnHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.luoi1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,11 +254,22 @@ namespace QuanLyTV
             this.txtTinhTrang.Size = new System.Drawing.Size(224, 20);
             this.txtTinhTrang.TabIndex = 70;
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(662, 20);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(126, 38);
+            this.btnHome.TabIndex = 71;
+            this.btnHome.Text = "Trang chủ";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // QuanLyMuonTraSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 575);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.txtTinhTrang);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtMaThe);
@@ -312,5 +324,6 @@ namespace QuanLyTV
         private System.Windows.Forms.TextBox txtMaThe;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTinhTrang;
+        private System.Windows.Forms.Button btnHome;
     }
 }

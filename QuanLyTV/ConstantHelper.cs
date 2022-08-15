@@ -12,7 +12,7 @@ namespace QuanLyTV
         {
 
         }
-        private const string serverName = @"DESKTOP-RCCOOEU\SDB1";
+        private const string serverName = @"DESKTOP-P3JTV9V";
 
         public static string ServerName => serverName;
     }

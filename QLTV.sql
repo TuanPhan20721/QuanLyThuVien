@@ -10,6 +10,12 @@ go
 --3. Thẻ thư viện (MÃ THẺ, Ngày bắt đầu, Ngày hết hạn, Ghi chú)
 --4.ThuThu (MÃ THỦ THƯ, Họ tên, Ngày sinh, Số điện thoại)
 --5. Mượn trả (MÃ MƯỢN TRẢ, MÃ THẺ, MÃ Thủ Thư, Ngày mượn)
+create table nguoidung
+(
+	tenDangNhap nvarchar(30),
+	matkhau nvarchar(30),
+	quyen nvarchar(30)
+)
 create table thuThu
 (
 	matt char(10) not null primary key,
@@ -58,6 +64,9 @@ create table muonTraSach
 	constraint fk_mtt foreign key(matt) references thuthu(matt),
 	constraint fk_sach foreign key(masach) references sach(masach)
 )
+insert into nguoidung values
+('admin','123','admin'),
+('user','123','user')
 --4. ThuThu (MÃ THỦ THƯ, Họ tên, Ngày sinh, Số điện thoại)
 set dateformat dmy
 insert into thuThu values

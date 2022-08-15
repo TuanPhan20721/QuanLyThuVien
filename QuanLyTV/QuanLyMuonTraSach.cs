@@ -170,5 +170,13 @@ namespace QuanLyTV
         {
             _clear();
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Menu formMenu = new Menu();
+            formMenu.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -57,6 +57,7 @@ namespace QuanLyTV
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQLS)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -307,11 +308,22 @@ namespace QuanLyTV
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Sách";
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(530, 5);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(87, 29);
+            this.btnHome.TabIndex = 48;
+            this.btnHome.Text = "Trang chủ";
+            this.btnHome.UseVisualStyleBackColor = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // QuanLySach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 427);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.label7);
@@ -362,6 +374,7 @@ namespace QuanLyTV
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnHome;
     }
 }
 
