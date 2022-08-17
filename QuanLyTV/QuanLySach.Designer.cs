@@ -56,7 +56,6 @@ namespace QuanLyTV
             this.label1 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQLS)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -334,6 +333,7 @@ namespace QuanLyTV
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dgvQLS);
             this.Name = "QuanLySach";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sách";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQLS)).EndInit();
@@ -373,7 +373,6 @@ namespace QuanLyTV
         private System.Windows.Forms.DataGridViewTextBoxColumn namXB;
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnHome;
     }
 }

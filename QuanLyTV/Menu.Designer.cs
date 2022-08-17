@@ -38,10 +38,9 @@ namespace QuanLyTV
             // 
             // btnQLDG
             // 
-            this.btnQLDG.Location = new System.Drawing.Point(292, 73);
-            this.btnQLDG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQLDG.Location = new System.Drawing.Point(219, 59);
             this.btnQLDG.Name = "btnQLDG";
-            this.btnQLDG.Size = new System.Drawing.Size(124, 100);
+            this.btnQLDG.Size = new System.Drawing.Size(93, 81);
             this.btnQLDG.TabIndex = 6;
             this.btnQLDG.Text = "Quản lý độc giả";
             this.btnQLDG.UseVisualStyleBackColor = true;
@@ -49,10 +48,9 @@ namespace QuanLyTV
             // 
             // btnQLMT
             // 
-            this.btnQLMT.Location = new System.Drawing.Point(506, 73);
-            this.btnQLMT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQLMT.Location = new System.Drawing.Point(380, 59);
             this.btnQLMT.Name = "btnQLMT";
-            this.btnQLMT.Size = new System.Drawing.Size(124, 100);
+            this.btnQLMT.Size = new System.Drawing.Size(93, 81);
             this.btnQLMT.TabIndex = 5;
             this.btnQLMT.Text = "Quản lý mượn  trả";
             this.btnQLMT.UseVisualStyleBackColor = true;
@@ -60,10 +58,9 @@ namespace QuanLyTV
             // 
             // btnQLS
             // 
-            this.btnQLS.Location = new System.Drawing.Point(86, 73);
-            this.btnQLS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQLS.Location = new System.Drawing.Point(64, 59);
             this.btnQLS.Name = "btnQLS";
-            this.btnQLS.Size = new System.Drawing.Size(124, 100);
+            this.btnQLS.Size = new System.Drawing.Size(93, 81);
             this.btnQLS.TabIndex = 4;
             this.btnQLS.Text = "Quản lý sách";
             this.btnQLS.UseVisualStyleBackColor = true;
@@ -71,10 +68,9 @@ namespace QuanLyTV
             // 
             // btnThongKe
             // 
-            this.btnThongKe.Location = new System.Drawing.Point(193, 211);
-            this.btnThongKe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThongKe.Location = new System.Drawing.Point(145, 171);
             this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(124, 100);
+            this.btnThongKe.Size = new System.Drawing.Size(93, 81);
             this.btnThongKe.TabIndex = 7;
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.UseVisualStyleBackColor = true;
@@ -82,10 +78,9 @@ namespace QuanLyTV
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(411, 211);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTimKiem.Location = new System.Drawing.Point(308, 171);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(124, 100);
+            this.btnTimKiem.Size = new System.Drawing.Size(93, 81);
             this.btnTimKiem.TabIndex = 8;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
@@ -93,16 +88,16 @@ namespace QuanLyTV
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 385);
+            this.ClientSize = new System.Drawing.Size(547, 313);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.btnThongKe);
             this.Controls.Add(this.btnQLDG);
             this.Controls.Add(this.btnQLMT);
             this.Controls.Add(this.btnQLS);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);

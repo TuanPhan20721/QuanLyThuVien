@@ -26,11 +26,11 @@ namespace QuanLyTV
         }
         public void hienthiTTTV()
         {
-            strcon.Open();
-            string sql = "Select_Sach";
-            SqlCommand com = new SqlCommand(sql, strcon);
-            //com.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(com); //chuyen du lieu ve
+            strcon.Open();// Mở kết nối
+            string sql = "Select_Sach";// lưu đường dẫn
+            SqlCommand com = new SqlCommand(sql, strcon);// tạo đối tượng thực thi sql
+            com.CommandType = CommandType.StoredProcedure;// store procedure
+            SqlDataAdapter da = new SqlDataAdapter(com); //chuyen du lieu ve da 
             DataTable dt = new DataTable(); //tạo một kho ảo để lưu trữ dữ liệu
             da.Fill(dt);  // đổ dữ liệu vào kho
             strcon.Close();  // đóng kết nối
@@ -38,9 +38,12 @@ namespace QuanLyTV
         }
         private void initDataGridView()
         {
-
-            dgvQLS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvQLS.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvQLS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // hiển thị auto size column
+            dgvQLS.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // chọn full row
+        }
+        private void dgvQLS_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            setSelectdgvQLTV();
         }
         private void setSelectdgvQLTV()
         {
@@ -58,6 +61,11 @@ namespace QuanLyTV
                 txtMaSach.Enabled = btnThem.Enabled = false;
             }
         }
+       
+        private void btnXoaTrang_Click_1(object sender, EventArgs e)
+        {
+            _clear();
+        }
         private void _clear()
         {
             btnSua.Enabled = btnXoa.Enabled = false;
@@ -70,19 +78,10 @@ namespace QuanLyTV
             txtNhaXB.Clear();
             txtNamXB.Clear();
         }
-
-        private void dgvQLS_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            setSelectdgvQLTV();
-        }
-
-        private void btnXoaTrang_Click_1(object sender, EventArgs e)
-        {
-            _clear();
-        }
-
+        // Thêm thông tin sách
         private void btnThem_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 strcon.Open();
@@ -100,13 +99,14 @@ namespace QuanLyTV
                 MessageBox.Show("Thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 hienthiTTTV();
             }
+              
             catch (Exception)
             {
                 MessageBox.Show("Không được trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
            
         }
-
+        //Xóa sách
         private void btnXoa_Click(object sender, EventArgs e)
         {
             try
@@ -128,7 +128,7 @@ namespace QuanLyTV
             }
            
         }
-
+        // sửa thông tin sách
         private void btnSua_Click(object sender, EventArgs e)
         {
             try
@@ -155,7 +155,7 @@ namespace QuanLyTV
             }
             
         }
-
+        // tìm kiếm sách
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
            

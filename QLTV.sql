@@ -98,13 +98,9 @@ insert into docGia values
 ('dg02','Phan Thi B','14/05/2001','213012312','31321312','TPHCM','mt02'),
 ('dg03','Phan Thi C','14/05/2001','213012312','31321312','TPHCM','mt02')
 
-select * from sach
-update sach set tensach='HQT' where masach='ms01'
-select * from muonTraSach
-go
 ---------------Phan Văn Tuấn------------------
 ----------------------------FUNCTION
---1. Viết hàm truyền vào mã sách sẽ trả về tổng số sách đã trả của mã sách đó 
+--1. Tạo hàm truyền vào mã sách sẽ trả về tổng số sách đã trả của mã sách đó 
 go
 create function tra_ve_TongSo_Sach_datra(@masach nvarchar(10))
 returns int
@@ -116,23 +112,25 @@ begin
 end
 go
 
+
 declare @ms nvarchar(10) 
 set @ms = dbo.tra_ve_TongSo_Sach_datra('ms01')
 print 'Tong so sach da tra cua ma sach ms01 la:'+ @ms  
+select * from muonTraSach
 go
---2. viết hàm thống kê sách mượn
+--2. Tạo hàm thống kê sách đã mượn
 
-create function travebang()
+create function bang_sach_Muon()
 returns table return 
 	select s.masach,s.tensach,mt.daTra,mt.ngayTra
-	from sach s inner join muonTraSach mt on s.masach = mt.masach
+	from sach s,muonTraSach mt where s.masach = mt.masach
 	group by s.masach,s.tensach,mt.daTra,mt.ngayTra
-
 go
-select * from travebang()
+
+select * from bang_sach_Muon()
 ------------------------CUSOR
 --- Bai tap Cursor
---1/ Viết cursor hiển thị mã sách, tên sách và tổng số phieu muon tra.
+--1/ Tạo cursor hiển thị mã sách, tên sách và tổng số phieu muon tra.
 declare hienThi_TT cursor dynamic
 for
 select s.masach ,s.tensach,count(mt.maMT) as TongSoPhieu_MT
@@ -149,8 +147,11 @@ begin
 end
 close hienThi_TT
 deallocate hienThi_TT
+
+select * from sach
+select * from muonTraSach
 go
---2/ Viết cursor hiển thị mã, họ tên, địa chỉ và tuổi của từng độc giả.
+--2/ Tạo cursor hiển thị mã, họ tên, địa chỉ và tuổi của từng độc giả.
 declare hienThi_docgia cursor dynamic
 for
 select dg.madg ,dg.tendg,dg.diachi,(YEAR(GETDATE())-YEAR(dg.ngaysinh)) as tuoi
@@ -182,10 +183,14 @@ as
 	end
 go	
 insert into sach values
-('ms04','Java Web','Sach Kinh Di',N'NGUYEN VAN A','NXB TPHCM','20/09/2013')
+('ms05','Ma ca rong','Sach Kinh Di',N'NGUYEN VAN A','NXB TPHCM','20/09/2013')
+
+insert into sach values
+('ms10','Anh Van B2','Sach Ngoai Ngu',N'NGUYEN VAN E','NXB TPHCM','20/09/2013')
+select * from sach
 drop trigger check_loaiSach
 go
---2. viet trigger kiem tra ngay tra lon hon ngay muon
+--2. tạo trigger kiểm tra ngày trả lớn hơn ngày mượn
 create trigger check_ngay on theTV
 for insert,update
 as
@@ -199,9 +204,22 @@ as
 go
 insert into theTV values
 ('mt04','22/12/2022','20/12/2022')
+
+insert into theTV values
+('mt04','10/12/2022','20/12/2022')
+select * from theTV
 drop trigger check_ngay
  go
 ---------------------------PROCEDURE
+-- tạo proceduce login
+create proc login_nguoidung
+	@taikhoan nvarchar(30),
+	@matkhau nvarchar(30)
+	as
+	begin
+		select * from nguoidung where tenDangNhap = @taikhoan and matkhau=@matkhau
+	end
+
 -- tạo thủ tục lấy ra thông tin bảng Sách
 CREATE proc Select_Sach 
 AS 
